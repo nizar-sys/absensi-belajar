@@ -293,21 +293,23 @@
 
                 @endif
 
-                <li class="nav-header mt-2 fw-bold">NOTIFIKASI</li>
-                <li class="nav-item">
-                    <a href="{{ '/' . $user->role . '/notifikasi' }}"
-                        class="nav-link {{ Request::is($user->role . '/notifikasi*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-bell"></i>
-                        <p>
-                            Notifikasi
-                            @if ($notifBelumDibaca->count() >= 1)
-                                <span class="badge badge-warning px-2 right">
-                                    {{ count($notifBelumDibaca) }}
-                                </span>
-                            @endif
-                        </p>
-                    </a>
-                </li>
+                @if ($user->role != 'orangtua')
+                    <li class="nav-header mt-2 fw-bold">NOTIFIKASI</li>
+                    <li class="nav-item">
+                        <a href="{{ '/' . $user->role . '/notifikasi' }}"
+                            class="nav-link {{ Request::is($user->role . '/notifikasi*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-bell"></i>
+                            <p>
+                                Notifikasi
+                                @if ($notifBelumDibaca->count() >= 1)
+                                    <span class="badge badge-warning px-2 right">
+                                        {{ count($notifBelumDibaca) }}
+                                    </span>
+                                @endif
+                            </p>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="nav-header mt-2 fw-bold">SAYA</li>
                 <li class="nav-item">

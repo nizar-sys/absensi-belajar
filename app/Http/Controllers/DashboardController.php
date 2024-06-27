@@ -26,7 +26,9 @@ class DashboardController extends Controller
         return view('pages.dashboard.index',[
           'siswa' => Siswa::get()->count(),
           'guru' => Guru::get()->count(),
-          'admin' => Admin::get()->count(),
+          'admin' => Admin::whereHas('user', function($q){
+            $q->where('role', 'admin');
+          })->get()->count(),
           'kelas' => Kelas::get()->count(),
           'tapel' => Tapel::get()->count(),
           'mapel' => Mapel::get()->count(),
